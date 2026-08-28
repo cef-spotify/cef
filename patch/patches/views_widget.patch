@@ -61,7 +61,7 @@ index cae64d23d6de3a9f1cc51dd1b36dc98e6516f456..1a20e4d6921f44a2ae7d432bbee51489
      case ui::mojom::WindowShowState::kMaximized:
        return kSerializedShowStateMaximized;
 diff --git content/browser/renderer_host/render_widget_host_view_base.cc content/browser/renderer_host/render_widget_host_view_base.cc
-index 99f590d854f856a116ed67b491cddf04c558ec58..5923c785635d8182e7ff0f81b84d601af680a304 100644
+index 4cb41b39f77c64006e2913c283bc0d0582c0c548..8bf192dbbb27d8c1e36282c17a6936239cf92785 100644
 --- content/browser/renderer_host/render_widget_host_view_base.cc
 +++ content/browser/renderer_host/render_widget_host_view_base.cc
 @@ -637,6 +637,14 @@ float RenderWidgetHostViewBase::GetScaleOverrideForCapture() const {
@@ -80,7 +80,7 @@ index 99f590d854f856a116ed67b491cddf04c558ec58..5923c785635d8182e7ff0f81b84d601a
    if (!GetMouseWheelPhaseHandler())
      return;
 diff --git content/browser/renderer_host/render_widget_host_view_base.h content/browser/renderer_host/render_widget_host_view_base.h
-index 2fc206be84d3d41379bb26540cbf0fa4b1ba95fb..619e38e8a073012214c96bef8d4db9ee52b85c30 100644
+index ecd648bfc7d48184451c1b4d6ce8b528aae1ef11..3ba36aa9c5687c9c368d0468827f12096c1dabd8 100644
 --- content/browser/renderer_host/render_widget_host_view_base.h
 +++ content/browser/renderer_host/render_widget_host_view_base.h
 @@ -79,6 +79,7 @@ namespace content {
@@ -91,7 +91,7 @@ index 2fc206be84d3d41379bb26540cbf0fa4b1ba95fb..619e38e8a073012214c96bef8d4db9ee
  class ScopedViewTransitionResources;
  class TextInputManager;
  class TouchSelectionControllerClientManager;
-@@ -164,6 +165,9 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
+@@ -165,6 +166,9 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
  
    virtual void DidOverscroll(const ui::DidOverscrollParams& params) {}
  
@@ -101,7 +101,7 @@ index 2fc206be84d3d41379bb26540cbf0fa4b1ba95fb..619e38e8a073012214c96bef8d4db9ee
    // Identical to `CopyFromSurface()`, except that this method issues the
    // `viz::CopyOutputRequest` against the exact `viz::Surface` currently
    // embedded by this View, while `CopyFromSurface()` may return a copy of any
-@@ -262,6 +266,10 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
+@@ -263,6 +267,10 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
    // Called when screen information or native widget bounds change.
    virtual void UpdateScreenInfo();
  
@@ -112,7 +112,7 @@ index 2fc206be84d3d41379bb26540cbf0fa4b1ba95fb..619e38e8a073012214c96bef8d4db9ee
    // Called by the TextInputManager to notify the view about being removed from
    // the list of registered views, i.e., TextInputManager is no longer tracking
    // TextInputState from this view. The RWHV should reset |text_input_manager_|
-@@ -390,6 +398,12 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
+@@ -391,6 +399,12 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
                             const gfx::Rect& bounds,
                             const gfx::Rect& anchor_rect) = 0;
  
@@ -125,7 +125,7 @@ index 2fc206be84d3d41379bb26540cbf0fa4b1ba95fb..619e38e8a073012214c96bef8d4db9ee
    // Indicates whether the page has finished loading.
    virtual void SetIsLoading(bool is_loading) = 0;
  
-@@ -662,6 +676,10 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
+@@ -663,6 +677,10 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
    // to all displays.
    gfx::Size system_cursor_size_;
  
@@ -136,7 +136,7 @@ index 2fc206be84d3d41379bb26540cbf0fa4b1ba95fb..619e38e8a073012214c96bef8d4db9ee
   private:
    FRIEND_TEST_ALL_PREFIXES(
        BrowserSideFlingBrowserTest,
-@@ -683,10 +701,6 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
+@@ -684,10 +702,6 @@ class CONTENT_EXPORT RenderWidgetHostViewBase
  
    void SynchronizeVisualProperties();
  
@@ -246,10 +246,10 @@ index aeaf8e35f7eda89598149117fe8508d197bf2610..4b7cc3f03d3cf9c91ac8efe11ae820cf
 +  [MinVersion=1] kEnd = 7,
  };
 diff --git ui/ozone/platform/x11/x11_window.cc ui/ozone/platform/x11/x11_window.cc
-index 9f74452f76356584b03a79254789efb18977caeb..3fe4ae9e99da26da2ec7725d90bdc35f1ea40935 100644
+index 3d54b619ae7dd2950f1a71bcab28ec353202ae1e..6fd1c6a4c3d3fe944e3d0a08eec29e031ba60e87 100644
 --- ui/ozone/platform/x11/x11_window.cc
 +++ ui/ozone/platform/x11/x11_window.cc
-@@ -1951,7 +1951,8 @@ void X11Window::CreateXWindow(const PlatformWindowInitProperties& properties) {
+@@ -1970,7 +1970,8 @@ void X11Window::CreateXWindow(const PlatformWindowInitProperties& properties) {
    req.border_pixel = 0;
  
    last_set_bounds_px_ = SanitizeBounds(bounds);
