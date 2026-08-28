@@ -1,5 +1,5 @@
 diff --git content/browser/web_contents/web_contents_impl.cc content/browser/web_contents/web_contents_impl.cc
-index 49b968fe5bf67badcda5e6bf90eb125024f66d95..eb8f0fa8dceb0ebbada268a0a2693309aaf97b9d 100644
+index 594fab89b8d4e818c8826954163945eb0a52c32e..354efd2edf366eadba3de60a69eda4b6d0647a83 100644
 --- content/browser/web_contents/web_contents_impl.cc
 +++ content/browser/web_contents/web_contents_impl.cc
 @@ -4196,6 +4196,12 @@ void WebContentsImpl::Init(const WebContents::CreateParams& params,
@@ -49,7 +49,7 @@ index 49b968fe5bf67badcda5e6bf90eb125024f66d95..eb8f0fa8dceb0ebbada268a0a2693309
    // Check whether there is an available prerendered page for this navigation if
    // this is not for guest. If it exists, take WebContents pre-created for
    // hosting the prerendered page instead of creating new WebContents.
-@@ -10126,6 +10145,9 @@ void WebContentsImpl::SetFocusedFrame(FrameTreeNode* node,
+@@ -10134,6 +10153,9 @@ void WebContentsImpl::SetFocusedFrame(FrameTreeNode* node,
    }
  
    CloseListenerManager::DidChangeFocusedFrame(this);
